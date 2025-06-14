@@ -87,7 +87,7 @@ portes** para análisis de ventas
 Para el diseño se eligieron colores claros y grises con un color base que en este caso fue un rosado para darle un tono más suave y agradable para el usuario. No es algo tipico pero si algo diferente.
 
 ### Inicio de sesión
-![alt text](image.png)
+![alt text](image-9.png)
 
 ### Gestión de Usuarios
 ![alt text](image-2.png)
