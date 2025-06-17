@@ -10,7 +10,7 @@
             <i data-lucide="user"></i>
         </a>
         <a href="/invoice/roles.php" class="main-nav-item <?php if($currentPage == 'roles.php') echo 'active'; ?>">
-            <i data-lucide="file-text"></i>
+            <i data-lucide="circle-dot"></i>
         </a>
         <a href="/invoice/client.php" class="main-nav-item <?php if($currentPage == 'client.php') echo 'active'; ?>">
             <i data-lucide="users-round"></i>
@@ -18,6 +18,7 @@
         <a href="/invoice/products.php" class="main-nav-item <?php if($currentPage == 'products.php') echo 'active'; ?>">
             <i data-lucide="scan-barcode"></i>
         </a>
+        <div class="main-nav-separator"></div>
         <a href="/invoice/logout.php" class="main-nav-item">
             <i data-lucide="log-out"></i>
         </a>

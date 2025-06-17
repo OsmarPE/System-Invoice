@@ -66,7 +66,7 @@
                     <i data-lucide="file-text"></i>
                     Facturas
                 </h1>
-                <a href="/invoice/create-invoice.php" class="main-header-btn btn btn--primary">
+                <a href="/invoice/services/invoices/create-invoice.php" class="main-header-btn btn btn--primary">
                     <i data-lucide="plus"></i>
                     <span>Agregar</span>
                 </a>

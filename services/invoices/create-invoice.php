@@ -1,7 +1,7 @@
 <?php
-    require_once 'session.php';
-    require_once 'helper/util.php';
-    require_once 'config/db.php';
+    require_once '../../helper/util.php';
+    require_once '../../config/db.php';
+    require_once '../../session.php';
 
     $id = $_SESSION['id'];
 
@@ -28,13 +28,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/styles.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="../../css/styles.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
 
 <body>
-    <?php include 'layout/header.php'; ?>
-    <?php include 'layout/navegation.php'; ?>
+    <?php include '../../layout/header.php'; ?>
+    <?php include '../../layout/navegation.php'; ?>
     <div class="container">
         <main class="main main--invoices">
             <div class="main-body main-body--invoices">

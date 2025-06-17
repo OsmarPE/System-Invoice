@@ -49,9 +49,9 @@
                 <article class="rol">
                     <p class="rol-name"><?php echo $row['name']; ?></p>
                     <div class="rol-actions">
-                        <button class="rol-btn btn-icon">
+                        <a href="/invoice/services/roles/add-rol.php?editid=<?php echo $row['id']; ?>" class="rol-btn btn-icon">
                             <i data-lucide="pencil"></i>
-                        </button>
+                        </a>
                         <a href="/invoice/services/roles/delete-rol.php?rol=<?php echo $row['id']; ?>" class="rol-btn btn-icon">
                             <i data-lucide="trash"></i>
                         </a>

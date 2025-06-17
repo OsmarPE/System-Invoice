@@ -259,6 +259,12 @@ body.login-container {
 .main-nav-item svg {
   width: 1rem;
 }
+.main-nav-separator{
+  width: 1px;
+  height: 1.5rem;
+  margin-inline: .5rem;
+  background-color: var(--color-border-input);
+}
 
 .main {
   margin-top: 2rem;
