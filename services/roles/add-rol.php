@@ -47,12 +47,22 @@
 <body>
     <?php include '../../layout/header.php'; ?>
     <div class="card">
-        <div class="card-header">
-            <h3>Agregar Rol</h3>
-            <p class="card-text">
-                Agrega un nuevo rol a la base de datos.
-            </p>
-        </div>
+        <?php if(isset($mode_edit_id)): ?>
+            <div class="card-header">
+                <h3>Editar Rol</h3>
+                <p class="card-text">
+                    Modifica un rol existente en la base de datos.
+                </p>
+            </div>
+             <?php else: ?>
+                    <div class="card-header">
+
+                        <h3>Agregar Rol</h3>
+                        <p class="card-text">
+                            Agrega un nuevo rol a la base de datos.
+                        </p>
+                    </div>
+            <?php endif; ?>
         <div class="card-body">
             <form class="card-form" action="/invoice/services/roles/add-rol.php" method="post">
                 <div class="card-form-group">

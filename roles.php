@@ -34,6 +34,7 @@
             <?php if(isset($message) && isset($status)): ?>
                 <?php echo message($message, $status); ?>
             <?php endif; ?>
+            
             <div class="main-header">
                 <h1 class="main-header-title">
                     <i data-lucide="user-round"></i>

@@ -66,9 +66,9 @@
                             <p class="user-text"><?php echo $row['phone']; ?></p>
                         </div>
                         <div class="user-actions">
-                            <button class="btn-icon">
+                        <a href="/invoice/services/client/add-client.php?editid=<?php echo $row['id']; ?>" class="btn-icon">
                             <i data-lucide="pencil"></i>
-                        </button>
+                        </a>
                         <a href="/invoice/services/client/delete-client.php?client=<?php echo $row['id']; ?>" class="btn-icon">
                             <i data-lucide="trash"></i>
                         </a>

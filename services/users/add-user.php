@@ -21,7 +21,7 @@
         'password' => '',
         'rol' => ''
     ];
-    
+
     $user = isset($_POST['user']) ? $_POST['user'] : null;
 
     if(isset($user)) {
@@ -73,12 +73,22 @@
         <?php if(isset($message) && isset($status)): ?>
             <?php echo message($message, $status); ?>
         <?php endif; ?>
-        <div class="card-header">
-            <h3>Agregar Usuario</h3>
-            <p class="card-text">
-                Agrega un nuevo usuario a la base de datos.
-            </p>
-        </div>
+        <?php if(isset($mode_edit_id)): ?>
+            <div class="card-header">
+                <h3>Editar Usuario</h3>
+                <p class="card-text">
+                    Modifica un usuario existente en la base de datos.
+                </p>
+            </div>
+             <?php else: ?>
+                    <div class="card-header">
+
+                        <h3>Agregar Usuario</h3>
+                        <p class="card-text">
+                            Agrega un nuevo usuario a la base de datos.
+                        </p>
+                    </div>
+            <?php endif; ?>
         <div class="card-body">
             <form class="card-form" action="/invoice/services/users/add-user.php" method="post">
                 <div class="card-form-group">
