@@ -1,4 +1,4 @@
-# 📋 Sistema de Facturación - Telecomunicaciones
+# 📋 Sistema de Facturación
 
 Pequeño sistema de facturación diseñado como parte de un aprendizaje personal con el fin de tener nosion del diseño y desarrollo de este tipo de sistemas.  
 
