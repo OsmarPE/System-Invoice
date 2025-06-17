@@ -64,9 +64,9 @@
                         </div>
                     </div>
                     <div class="user-footer">
-                        <button class="btn-icon">
+                        <a href="/invoice/services/users/add-user.php?editid=<?php echo $row['id']; ?>" class="btn-icon">
                             <i data-lucide="pencil"></i>
-                        </button>
+                        </a>
                         <a href="/invoice/services/users/delete-user.php?id=<?php echo $row['id']; ?>" class="btn-icon">
                             <i data-lucide="trash"></i>
                         </a>
