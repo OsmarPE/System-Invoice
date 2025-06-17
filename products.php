@@ -17,7 +17,6 @@
             $status = 'error';
         }
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +54,7 @@
                             <i data-lucide="barcode"></i>
                         </div>
                         <div class="product-actions">
-                            <a class="btn-icon">
+                            <a href="/invoice/services/products/add-product.php?editid=<?php echo $row['id']; ?>" class="btn-icon">
                                 <i data-lucide="pencil"></i>
                             </a>
                             <a href="/invoice/services/products/delete-products.php?id=<?php echo $row['id']; ?>" class="btn-icon">
