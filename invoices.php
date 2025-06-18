@@ -3,7 +3,7 @@
     require_once 'config/db.php';
     include_once 'helper/util.php';
 
-    $query = "SELECT invoice.id, invoice.date, invoice.total, client.name as name, client.direction, client.phone, user.name as user_name
+    $query = "SELECT invoice.id, invoice.date, invoice.subtotal, invoice.iva, invoice.total, client.name as name, client.direction, client.phone, user.name as user_name
         FROM invoice
         LEFT JOIN client ON invoice.client_id = client.id
         LEFT JOIN user ON invoice.user_id = user.id
@@ -120,9 +120,19 @@
                             <?php endforeach; ?>
                         </ul>
                         <?php endif; ?>
-                        <div class="invoice-products-total invoice-products-total--spacing">
-                            <p>Total</p>
-                            <span class="total">$<?php echo $invoice['total']; ?></span>
+                        <div class="invoice-footer">
+                            <div class="invoice-footer-row">
+                                <p>Subtotal</p>
+                                <span class="total">$<?php echo $invoice['subtotal']; ?></span>
+                            </div>
+                            <div class="invoice-footer-row">
+                                <p>IVA</p>
+                                <span class="total">$<?php echo $invoice['iva']; ?></span>
+                            </div>
+                            <div class="invoice-footer-row invoice-footer-total">
+                                <p>Total</p>
+                                <span class="total">$<?php echo $invoice['total']; ?></span>
+                            </div>
                         </div>
                         <button class="invoice-products-btn btn btn--primary">
                             <i data-lucide="cloud-download"></i>

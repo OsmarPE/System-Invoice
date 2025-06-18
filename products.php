@@ -70,7 +70,10 @@
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                             Voluptatem, voluptates, quisquam.
                         </p>
-                        <p class="product-price">$<?php echo $row['price']; ?></p>
+                        <div class="product-actions">
+                            <p class="product-price">$<?php echo $row['price']; ?></p>
+                            <p class="product-stock badge badge-base"> <?php echo $row['stock']; ?> items</p>
+                        </div>
                     </div>
                 </article>
                 <?php endwhile; ?>

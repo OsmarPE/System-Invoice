@@ -37,7 +37,7 @@
             
             <div class="main-header">
                 <h1 class="main-header-title">
-                    <i data-lucide="user-round"></i>
+                    <i data-lucide="circle-dot"></i>
                     Roles
                 </h1>
                 <a href="/invoice/services/roles/add-rol.php" class="main-header-btn btn btn--primary">
@@ -58,8 +58,7 @@
                         </a>
                     </div>
                 </article>
-                <?php endwhile; ?>
-               
+                <?php endwhile; ?>               
             </div>
         </main>
     </div>
