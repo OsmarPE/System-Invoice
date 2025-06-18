@@ -5,11 +5,19 @@
 
     $id = $_SESSION['id'];
 
-    $query_client = "SELECT client.id, client.name FROM client";
+    $data_client = [];
+    $query_client = "SELECT client.id, client.name, client.direction, client.phone, client.email FROM client";
     $clients = $db->query($query_client);
+    while ($row = $clients->fetch_assoc()) {
+        $data_client[] = $row;
+   }
 
+    $data = [];
     $query_user = "SELECT user.id, user.name FROM user";
     $users = $db->query($query_user);
+    while ($row = $users->fetch_assoc()) {
+        $data[] = $row;
+   }
     
     $query_product = "SELECT product.id, product.name, product.price, product.stock FROM product";
     $products = $db->query($query_product);
@@ -19,6 +27,15 @@
     while($row = $products->fetch_assoc()){
         $products_arraY[] = $row;
     }
+
+    $user = '';
+   
+   foreach($data as $user_item){
+       if($user_item['id'] == $id){
+           $user = $user_item['name'];
+           break;
+        }
+   }
     
 ?>
 
@@ -53,9 +70,9 @@
                                <label for="user" class="label">Emitido por</label>
                                <select name="user" id="user" class="input"  disabled>
                                    <option value="">Seleccione un usuario</option>
-                                   <?php while($row = $users->fetch_assoc()): ?>
+                                   <?php foreach($data as $row): ?>
                                    <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>                                   
-                                   <?php endwhile; ?>
+                                   <?php endforeach; ?>
                                </select>
                            </div>
                            <div class="invoice-row">
@@ -63,9 +80,9 @@
                                   <label for="user" class="label">Cliente</label>
                                   <select name="user" id="client" class="input">
                                       <option value="">Seleccione un cliente</option>
-                                      <?php while($row = $clients->fetch_assoc()): ?>
+                                      <?php foreach($data_client as $row): ?>
                                       <option value="<?php echo $row['id']; ?>"><?php echo $row['name']; ?></option>
-                                      <?php endwhile; ?>
+                                      <?php endforeach; ?>
                                   </select>
                               </div>
                               <div class="invoice-item">
@@ -73,7 +90,7 @@
                                   <input type="date" name="date" id="date" class="input">
                               </div>
                            </div>
-                           <div class="">
+                           <div >
                                <h3 class="invoice-subtitle">
                                    Productos
                                 </h3>
@@ -144,23 +161,25 @@
                             <p class="preview-text preview-text-gray">
                                 Realizado por
                             </p>
-                            <span class="preview-text preview-text-strong">Osmar Uriel Perera Balam</span>
+                            <span class="preview-text preview-text-strong"> <?php echo $user; ?></span>
                         </div>
                         <div>
                             <p class="preview-text preview-text-gray">
                                 Factura de emisión
                             </p>
-                            <span class="preview-text preview-text-strong">20 de Junio de 2022</span>
+                            <span id="preview-date" class="preview-text preview-text-strong">20 de Junio de 2022</span>
                         </div>
                     </div>
                     <div class="preview-client">
                         <p class="preview-text preview-text-gray">
                             De
                         </p>
-                        <span class="preview-text-strong">Osmar Uriel Perera Balam</span>
-                        <p class="preview-text preview-text-gray">Calle 77 #103 x 192 y 29</p>
-                        <p class="preview-text preview-text-gray">osmar@perera.com</p>
-                        <p class="preview-text preview-text-gray">9993949493</p>
+                        <div id="preview-client-receptor">
+                            <span class="preview-text-strong">Osmar Uriel Perera Balam</span>
+                            <p class="preview-text preview-text-gray">Calle 77 #103 x 192 y 29</p>
+                            <p class="preview-text preview-text-gray">osmar@perera.com</p>
+                            <p class="preview-text preview-text-gray">9993949493</p>
+                        </div>
                     </div>
                     <table class="preview-table">
                         <thead>
@@ -171,13 +190,7 @@
                                 <th>Total</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Nike Air Max 97</td>
-                                <td>2</td>
-                                <td>$1,000.00</td>
-                                <td>$2,000.00</td>
-                            </tr>
+                        <tbody id="preview-table-body">
                             <tr>
                                 <td>Nike Air Max 97</td>
                                 <td>2</td>
@@ -186,9 +199,19 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="preview-total">
-                        <p class="preview-total-title" >Total</p>
-                        <span class="preview-total-text">$2,000.00</span>                    
+                    <div class="invoice-footer">
+                        <div class="invoice-footer-row">
+                            <p  >IVA</p>
+                            <span id="preview-iva">$0</span>                    
+                        </div>
+                        <div class="invoice-footer-row">
+                            <p  >Subtotal</p>
+                            <span id="invoice-subtotal">$0</span>                    
+                        </div>
+                        <div class="invoice-footer-row invoice-footer-total">
+                            <p  >Total</p>
+                            <span class="preview-total-text" id="preview-total">$0</span>                    
+                        </div>
                     </div>
                 </article>
             </div>
@@ -216,6 +239,13 @@
         this.productsFooter = document.querySelector('.invoice-products-footer');
         this.dateElement = document.querySelector('#date');
         this.clientElement = document.querySelector('#client');
+        this.previewDateElement = document.querySelector('#preview-date');
+        this.previewClientReceptor = document.querySelector('#preview-client-receptor');
+        this.previewTableBody = document.querySelector('#preview-table-body');
+        this.previewTotalElement = document.querySelector('#preview-total');
+        this.previewIvaElement = document.querySelector('#preview-iva');
+        this.previewSubtotalElement = document.querySelector('#invoice-subtotal');
+        this.clients = <?php echo json_encode($data_client); ?>;
 
         this.id = <?php echo $id; ?>;
         this.cart = [];
@@ -231,8 +261,11 @@
         this.bindProductSelectEvents();
         this.bindProductAmountEvents();
         this.submitBtn.addEventListener('click', (e) => this.handleSubmit(e));
+        this.dateElement.addEventListener('change', (e) => this.handleChangeInputToElement(this.formatDate(e.target.value), this.previewDateElement));
+        this.clientElement.addEventListener('change', (e) => this.handleChangeClient(e));
+    
     }
-
+    
     async handleSubmit(e) {
         e.preventDefault();
 
@@ -276,15 +309,30 @@
         });
     }
 
+    handleChangeInputToElement(value, element) {
+        element.textContent = value;
+    }
+
+    handleChangeClient(e) {
+        const client = this.clients.find(client => client.id == e.target.value);
+        this.previewClientReceptor.innerHTML = `
+            <span class="preview-text-strong">${client.name}</span>
+            <p class="preview-text preview-text-gray">${client.direction}</p>
+            <p class="preview-text preview-text-gray">${client.phone}</p>
+            <p class="preview-text preview-text-gray">${client.email}</p>
+        `;
+        
+    }
+
     handleInputAmount(e) {
        const value = e.target.value;
        const parent = e.target.closest('.invoice-products-item-add');
        const idInput = parent.querySelector('input[name="id"]').value;
 
        const productNew = this.products.find(product => product.id === idInput);
-       console.log(productNew);
-       this.cart = this.cart.map(product => product.id == idInput ? {...productNew, amount: +value} : product);
+       this.cart = this.cart.map(product => product.id == idInput ? {...productNew, amount: +value, total: product.price * +value} : product);
        this.handleShowTotal();
+       this.printCartToTable();
     }
 
     handleShowTotal(e) {
@@ -293,6 +341,13 @@
         this.ivaElement.textContent = `${this.getIVA().toFixed(2)}$`;
         this.subtotalElement.textContent = `${total.toFixed(2)}$`;
         this.totalElement.textContent = `${this.getTotal().toFixed(2)}$`;
+    }
+
+    formatDate(date) {
+        const dateValue = new Date(date);
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        return new Intl.DateTimeFormat('es-MX', options).format(dateValue);
+
     }
 
     handleAddProduct(e) {
@@ -318,6 +373,29 @@
 
         this.bindProductSelectEvents();
         this.bindProductAmountEvents();
+    }
+
+    printCartToTable() {
+        
+        this.previewTableBody.innerHTML = '';
+        
+        this.cart.forEach(product => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${product.name}</td>
+                <td>${product.amount}</td>
+                <td>${product.price}</td>
+                <td>${product.total}</td>
+            `;
+            this.previewTableBody.appendChild(row);
+        });
+        
+        this.previewSubtotalElement.textContent = `${this.formatPesos(this.getSubtotal())}`;
+        this.previewIvaElement.textContent = `${this.formatPesos(this.getIVA())}`;
+        this.previewTotalElement.textContent = `${ this.formatPesos(this.getTotal())}`;
+        
+        
+
     }
     
 
@@ -351,8 +429,18 @@
             this.cart = [...this.cart, product];
             input.value = product.price;
             idInput.value = product.id;
+
         }
     }
+    formatPesos(amount, withDecimals = true) {
+        return new Intl.NumberFormat('es-MX', {
+            style: 'currency',
+            currency: 'MXN',
+            minimumFractionDigits: withDecimals ? 2 : 0,
+            maximumFractionDigits: 2
+        }).format(amount);
+}
+
 }
 
 new InvoiceManager();

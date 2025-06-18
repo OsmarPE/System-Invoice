@@ -583,7 +583,7 @@ body.login-container {
   gap: .5rem;
 }
 
-.invoice-footer-row, .invoice-products-subtotal, .invoice-products-iva{
+.invoice-footer-row, .invoice-products-subtotal, .invoice-products-iva,.invoice-products-total{
   display: flex;
   align-items: center;
   justify-content: space-between;

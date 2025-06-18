@@ -57,11 +57,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <form class="form-login" method="post" action="index.php">
             <div class="form-login-body">
                 <div class="form-login-item">
-                    <label class="label" for="email">Email</label>
+                    <label class="label" for="email">Correo Electrónico</label>
                     <input class="input" type="email" id="email" name="email" placeholder="exemple@gmail.com">
                 </div>
                 <div class="form-login-item">
-                    <label class="label" for="password">Password</label>
+                    <label class="label" for="password">Contraseña</label>
                     <input class="input" type="password" id="password" name="password" placeholder="••••••••••••">
                 </div>
             </div>
